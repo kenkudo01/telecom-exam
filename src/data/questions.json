@@ -1,0 +1,281 @@
+[
+  {
+    "id": 1,
+    "type": "multiple",
+    "question": "Select the three main advantages of packet-switched networks!",
+    "options": [
+      "Efficient resource management",
+      "Simple implementation",
+      "Predictable performance with guarantees",
+      "Good fault tolerance",
+      "Low performance in case of bursty traffic or short data flows",
+      "Complex circuit establishment and tear-down phases"
+    ],
+    "correctAnswers": [0, 1, 3]
+  },
+  {
+    "id": 2,
+    "type": "single",
+    "question": "Which layer of ISO/OSI is responsible for media access control?",
+    "options": [
+      "L4-Transport",
+      "L2-Data link",
+      "L7-Application",
+      "L5-Session",
+      "L1-Physical",
+      "L3-Network",
+      "L6-Presentation"
+    ],
+    "correctAnswers": [1]
+  },
+  {
+    "id": 3,
+    "type": "multiple",
+    "question": "Which statements are true for the baseband transmission?",
+    "options": [
+      "The signal is transmitted in a wide band of the frequency range instead of the entire range.",
+      "The signal is tranmitted using the entire frequency range.",
+      "The signal is encoded into a carrier wave by a technique called modulation.",
+      "The digital signal is directly converted into current or voltage."
+    ],
+    "correctAnswers": [1, 3]
+  },
+  {
+    "id": 4,
+    "type": "multiple",
+    "question": "Which statements are true for the simplex stop-and-wait protocol (noisy channel)?",
+    "options": [
+      "It requires a full duplex channel.",
+      "It contnously sends packets using the pipeline technique.",
+      "Lost acnkowledgments result in duplicate packet reception at the reciever side.",
+      "In case of packet loss, the lost packet is retransmitted after a timeout period. The timeout is managed by a timer."
+    ],
+    "correctAnswers": [2, 3]
+  },
+  {
+    "id": 5,
+    "type": "single",
+    "question": "What does the property called \"carrier sensing\" mean?",
+    "options": [
+      "The station can sense the error of the carrier wave.",
+      "The stations can check the state of the physical media before data tranmission. The channel could be idle or busy.",
+      "The stations get information about the channel state from a central server or entity.",
+      "The channel state can be determined with a modified carrier wave. The wave is modified by modulation."
+    ],
+    "correctAnswers": [1]
+  },
+  {
+    "id": 6,
+    "type": "multiple",
+    "question": "Which statements are true?",
+    "options": [
+      "CSMA/CD is not needed in switches.",
+      "Every bridge is a switch.",
+      "Each port of a switch can only be connected to an end-host or another switch.",
+      "End-hosts are connected to switches with full duplex links.",
+      "CSMA/CD is not needed in bridges."
+    ],
+    "correctAnswers": [0, 3]
+  },
+  {
+    "id": 7,
+    "type": "single",
+    "question": "Which IPv4 address class results in the smallest number of IP blocks? With other terms: which address class can be used in the smallest number of networks? How many entities can own an IP range from a given class, where is this number the smallest?",
+    "options": [
+      "Class C",
+      "Class B",
+      "The number is the same in each class",
+      "Class A"
+    ],
+    "correctAnswers": [3]
+  },
+  {
+    "id": 8,
+    "type": "multiple",
+    "question": "Select the three key components of computer networks!",
+    "options": [
+      "CPU",
+      "copper cable",
+      "end-hosts",
+      "fluxus condensator",
+      "hoax cable",
+      "monitor",
+      "links",
+      "switches/Routers"
+    ],
+    "correctAnswers": [2, 6, 7]
+  },
+  {
+    "id": 9,
+    "type": "multiple",
+    "question": "What additional services are implemented by TCP (in addition to IP)?",
+    "options": [
+      "Non-reliable data transport, but it ensures in-order delivery.",
+      "Connection oriented services.",
+      "Reliable data transport with in-order delivery.",
+      "Connection-less datagram service."
+    ],
+    "correctAnswers": [1, 2]
+  },
+  {
+    "id": 10,
+    "type": "multiple",
+    "question": "Which statements are true for alternating bit protocol (ABP)?",
+    "options": [
+      "It requires a full duplex channel.",
+      "Packets carry a sequence number which is either 0 or 1.",
+      "Lost acknowledgments result in duplicate packet reception at the receiver side.",
+      "The sequence number enables the receiver to recognize duplicate packets."
+    ],
+    "correctAnswers": [1, 2, 3]
+  },
+  {
+    "id": 11,
+    "type": "multiple",
+    "question": "Which statements are true for broadband transmission?",
+    "options": [
+      "The signal is transmitted in a wide band of the frequency range instead of the entire range",
+      "The signal is transmitted using the entire frequency range.",
+      "The digital signal is directly converted into current or voltage.",
+      "The signal is encoded into a carrier wave by a technique called modulation."
+    ],
+    "correctAnswers": [0, 3]
+  },
+  {
+    "id": 12,
+    "type": "multiple",
+    "question": "Select the three main disadvantages of circuit-switched networks!",
+    "options": [
+      "Buffer-management is needed",
+      "Unpredictable performance",
+      "New circuit is needed in case of failure",
+      "Complex circuit establishment and tear-down phases",
+      "Low performance in case of bursty traffic or short data flows",
+      "Congestion control is needed"
+    ],
+    "correctAnswers": [2, 3, 4]
+  },
+  {
+    "id": 13,
+    "type": "multiple",
+    "question": "Which statements are true for the sliding window protocol?",
+    "options": [
+      "Lost acknowledgments result in duplicate packet reception at the receiver side.",
+      "It requires a full duplex channel. Data and acknowledgment packets can travel simultaneously.",
+      "Frames with sequence numbers that are not in the receiving window are ignored by the receiver. Acks are also sent for these packets.",
+      "Acknowledgements and the ack numbers are used to enable the sender to transmit more data (e.g., the next frame)."
+    ],
+    "correctAnswers": [1, 2, 3]
+  },
+  {
+    "id": 14,
+    "type": "truefalse",
+    "question": "TCP is very efficient for transmitting web traffic, since it can almost fully utilize the available bandwidth in the network.",
+    "correctAnswer": true
+  },
+  {
+    "id": 15,
+    "type": "truefalse",
+    "question": "Packet loss can only be cause by network congestion, so it is a clear evidence of network congestion?",
+    "correctAnswer": false
+  },
+  {
+    "id": 16,
+    "type": "truefalse",
+    "question": "Using its \"Cubic function,\" TCP CUBIC can ramp up its sending rate faster than the slow start mechanism.",
+    "correctAnswer": true
+  },
+  {
+    "id": 17,
+    "type": "truefalse",
+    "question": "Packet loss can only be caused by network congestion, so it is clear evidence of network congestion.",
+    "correctAnswer": false
+  },
+  {
+    "id": 18,
+    "type": "single",
+    "question": "What does the reception of three duplicate acknowledgements mean in TCP Reno?",
+    "options": [
+      "It is like a single acknowledgement.",
+      "Packet loss",
+      "Good transmission.",
+      "Sliding the window by 3 segments."
+    ],
+    "correctAnswers": [1]
+  },
+  {
+    "id": 19,
+    "type": "single",
+    "question": "Which statement is true for pure ALOHA?",
+    "options": [
+      "If there is data to be sent, it sends the data. The data is transmitted immediately.",
+      "When the data is ready for transmission, the frame will be sent at the boundary of the next time slot.",
+      "Before transmission, the station checks the physical media. If it is idle, it sends the data with probability p and waits for the next slot with probability 1-p.",
+      "Before transmission, the station checks the physical media. If it is idle, it sends the data."
+    ],
+    "correctAnswers": [0]
+  },
+  {
+    "id": 20,
+    "type": "single",
+    "question": "Select the IPv4 address class where the largest number of hosts can be defined?",
+    "options": [
+      "Class B",
+      "Class A",
+      "The same number of hosts can be defined in each class.",
+      "Class C"
+    ],
+    "correctAnswers": [1]
+  },
+  {
+    "id": 21,
+    "type": "single",
+    "question": "Which layer of ISO/OSI does contain TCP?",
+    "options": [
+      "L5-Session",
+      "L6-Presentation",
+      "L1-Physical",
+      "L3-Network",
+      "L4-Transport",
+      "L7-Application",
+      "L2-Data link"
+    ],
+    "correctAnswers": [4]
+  },
+  {
+    "id": 22,
+    "type": "single",
+    "question": "Which statement is true for the Physical layer?",
+    "options": [
+      "Transferring messages between two applications",
+      "All the data is transmitted via radio waves",
+      "Applying error correction to handle channel noise",
+      "Transferring information (bits) between two physically interconnected devices"
+    ],
+    "correctAnswers": [3]
+  },
+  {
+    "id": 23,
+    "type": "single",
+    "question": "What is true for Spanning Tree Protocol (STP) used by bridges?",
+    "options": [
+      "The root of the spanning tree is the bridge with the smallest bridge ID.",
+      "A centralized algorithm calculates the tree and reconfigures the bridges accordingly.",
+      "It enables loops in the topology if the performance can be increased this way.",
+      "In case of unknown destination, we send the frame to all the neighbors and wait for replies."
+    ],
+    "correctAnswers": [0]
+  },
+  {
+    "id": 24,
+    "type": "numeric",
+    "question": "There is a code S whose Hamming-distance d(S)=2. How many simple bit-errors can we detect with the use of code S?",
+    "correctAnswer": 1
+  },
+  {
+    "id": 25,
+    "type": "numeric",
+    "question": "There is a code S whose Hamming-distance d(S)=15. How many simple bit-errors can we detect with the use of code S?",
+    "correctAnswer": 14
+  }
+]

@@ -1,0 +1,115 @@
+.mode-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.mode-selection-card {
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  padding: 56px;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.mode-selection-card h1 {
+  color: #1a1a1a;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.mode-description {
+  color: #6b7280;
+  font-size: 17px;
+  margin-bottom: 48px;
+  font-weight: 500;
+}
+
+.mode-buttons {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.mode-button {
+  flex: 1;
+  min-width: 280px;
+  max-width: 320px;
+  background: #fafafa;
+  border: 2.5px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 44px 32px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+}
+
+.mode-button:hover {
+  border-color: #667eea;
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.25), 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.mode-button.exam-mode:hover {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+}
+
+.mode-button.practice-mode:hover {
+  border-color: #28a745;
+  background: linear-gradient(135deg, rgba(40, 167, 69, 0.05) 0%, rgba(40, 167, 69, 0.05) 100%);
+}
+
+.mode-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.mode-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 16px;
+  letter-spacing: -0.3px;
+}
+
+.mode-detail {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .mode-selection-card {
+    padding: 30px 20px;
+  }
+
+  .mode-selection-card h1 {
+    font-size: 24px;
+  }
+
+  .mode-description {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .mode-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mode-button {
+    width: 100%;
+    max-width: none;
+    min-width: auto;
+  }
+}

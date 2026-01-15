@@ -1,0 +1,278 @@
+了解 👍
+**並列処理（Java中心）チートシート**を
+👉 *「概念 → 代表API → いつ使うか → 注意点」*
+の形で一気に俯瞰できるようにまとめるね。
+
+---
+
+# 🧵 並列処理・並行処理 チートシート（Java）
+
+---
+
+## 0️⃣ まず全体像（超重要）
+
+| 用語                      | 意味                 |
+| ----------------------- | ------------------ |
+| **並行（Concurrency）**     | 同時に「進んでいるように見える」   |
+| **並列（Parallelism）**     | 実際に同時に実行されている      |
+| **Thread**              | 実行の最小単位            |
+| **共有資源**                | 複数スレッドが触る変数・オブジェクト |
+| **競合（Race Condition）**  | 実行順で結果が変わるバグ       |
+| **同期（Synchronization）** | 競合を防ぐ制御            |
+
+---
+
+## 1️⃣ Thread の作り方（基本）
+
+### 🔹 Thread を継承
+
+```java
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Hello");
+    }
+}
+new MyThread().start();
+```
+
+✔ シンプル
+❌ 継承を消費する（他を extends できない）
+
+---
+
+### 🔹 Runnable を実装（推奨）
+
+```java
+Runnable r = () -> System.out.println("Hello");
+new Thread(r).start();
+```
+
+✔ 柔軟・Executorと相性◎
+✔ 実務では基本これ
+
+---
+
+## 2️⃣ start / run / join
+
+| メソッド      | 意味                   |
+| --------- | -------------------- |
+| `start()` | **新しいスレッド**として実行開始   |
+| `run()`   | 普通のメソッド呼び出し（並列にならない） |
+| `join()`  | 他スレッドの終了を待つ          |
+
+```java
+t.start();
+t.join(); // InterruptedException 必須
+```
+
+📌 **join は必ず InterruptedException を考慮**
+
+---
+
+## 3️⃣ synchronized（モニタロック）
+
+### 🔹 メソッド単位
+
+```java
+public synchronized void inc() {
+    count++;
+}
+```
+
+### 🔹 ブロック単位
+
+```java
+synchronized (lockObject) {
+    count++;
+}
+```
+
+| 特徴    | 内容          |
+| ----- | ----------- |
+| ロック対象 | オブジェクト      |
+| 同時実行  | 1スレッドのみ     |
+| 解除    | ブロックを抜けると自動 |
+
+❗ 過剰に使うと **性能劣化**
+
+---
+
+## 4️⃣ wait / notify / notifyAll
+
+### 🔹 基本構文
+
+```java
+synchronized (lock) {
+    while (!condition) {
+        lock.wait();
+    }
+}
+```
+
+```java
+synchronized (lock) {
+    condition = true;
+    lock.notifyAll();
+}
+```
+
+### 重要ルール（試験＆実務）
+
+| ルール                 | 理由       |
+| ------------------- | -------- |
+| synchronized 必須     | モニタ所有が必要 |
+| while で待つ           | 偽起床対策    |
+| notify より notifyAll | デッドロック回避 |
+
+📌 `IllegalMonitorStateException` = synchronized忘れ
+
+---
+
+## 5️⃣ volatile
+
+```java
+volatile boolean running = true;
+```
+
+| 効果   | あり / なし |
+| ---- | ------- |
+| 可視性  | ✅       |
+| 排他制御 | ❌       |
+| 原子性  | ❌       |
+
+✔ フラグ・状態通知用
+❌ カウンタには使えない
+
+---
+
+## 6️⃣ Lock / Condition（上位API）
+
+```java
+Lock lock = new ReentrantLock();
+Condition done = lock.newCondition();
+
+lock.lock();
+try {
+    done.await();
+} finally {
+    lock.unlock();
+}
+```
+
+```java
+lock.lock();
+try {
+    done.signalAll();
+} finally {
+    lock.unlock();
+}
+```
+
+| synchronizedとの違い  |
+| ----------------- |
+| 明示的 lock/unlock   |
+| 複数 Condition を持てる |
+| try-finally 必須    |
+
+✔ 高度な制御が必要なとき
+
+---
+
+## 7️⃣ BlockingQueue（超重要）
+
+### 🔹 代表的実装
+
+| クラス                     | 特徴    |
+| ----------------------- | ----- |
+| `ArrayBlockingQueue`    | 固定長   |
+| `LinkedBlockingQueue`   | 可変長   |
+| `PriorityBlockingQueue` | 優先度付き |
+
+---
+
+### 🔹 take / put / poll の違い
+
+| メソッド            | 動作       |
+| --------------- | -------- |
+| `put(x)`        | 満杯なら待つ   |
+| `take()`        | 空なら待つ    |
+| `poll()`        | 空なら null |
+| `poll(t, unit)` | 時間付き待ち   |
+
+📌 **Pipeline / Producer-Consumer の王道**
+
+---
+
+## 8️⃣ ExecutorService（実務必須）
+
+```java
+ExecutorService pool = Executors.newFixedThreadPool(4);
+pool.submit(() -> work());
+pool.shutdown();
+```
+
+| 種類                        | 用途     |
+| ------------------------- | ------ |
+| `newSingleThreadExecutor` | 直列     |
+| `newFixedThreadPool(n)`   | 並列制限   |
+| `newCachedThreadPool`     | 短命タスク  |
+| `newWorkStealingPool`     | CPU最適化 |
+
+✔ Thread を直接 new しないのが実務
+
+---
+
+## 9️⃣ Future / Callable
+
+```java
+Future<Integer> f = pool.submit(() -> 42);
+int v = f.get(); // 待つ
+```
+
+| ポイント                   |
+| ---------------------- |
+| 戻り値あり                  |
+| get() はブロック            |
+| InterruptedException注意 |
+
+---
+
+## 🔟 よくあるバグ集（重要）
+
+| バグ                   | 原因                |
+| -------------------- | ----------------- |
+| 無限ループ                | 終了条件が共有されていない     |
+| 値がおかしい               | 同期不足              |
+| プログラム終了しない           | non-daemon thread |
+| NullPointerException | auctionQueue 参照競合 |
+| IllegalMonitorState  | wait/notify位置ミス   |
+
+---
+
+## 🧠 思考モデル（これが一番大事）
+
+### 並列処理で常に考える3点
+
+1. **誰が共有している？**
+2. **いつ変更される？**
+3. **順序は保証されている？**
+
+---
+
+## ✨ まとめ（試験＆実務用）
+
+* Thread → **Runnable + Executor**
+* 共有変数 → **synchronized / Lock**
+* 待ち合わせ → **wait/notify or BlockingQueue**
+* 通信 → **BlockingQueue**
+* 終了管理 → **join / isAlive / shutdown**
+
+---
+
+もし次にやるならおすすめ順👇
+1️⃣ Producer–Consumer を図で説明
+2️⃣ AuctionHouse を UML + 時系列で整理
+3️⃣ wait/notify と BlockingQueue の思想比較
+4️⃣ 試験で出る「ひっかけ問題集」
+
+どれ行く？
